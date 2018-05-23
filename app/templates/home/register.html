@@ -1,60 +1,52 @@
 {% extends "home/home.html" %}
 
 {% block content %}
+
 <div class="row">
+
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-success">
          <div class="panel-heading">
-             <h3 class="panel-title"><span class="glyphicon glyphicon-plus">会员注册</span>
+             <h3 class="panel-title"><span class="glyphicon glyphicon-plus">{{ title }}</span>
              </h3>
          </div>
         <div class="panel-body">
+            <!-- message flash start -->
             {% for msg  in get_flashed_messages(category_filter=["err"]) %}
                  <p class="login-box-msg" style="color:red">{{ msg }}</p>
             {% endfor %}
             {% for msg  in get_flashed_messages(category_filter=["ok"]) %}
                  <p class="login-box-msg" style="color:green">{{ msg }}</p>
             {% endfor %}
+            <!-- flash end -->
             <form role="form" method="post">
                 <fieldset>
+
                    <div class="form-group">
                        <label for="input_name" ><span class="glyphicon glyphicon-user"></span>{{ form.name.label }}</label>
-                       <!--
-                       <input class="form-control input-lg" id="input_name" name="name" type="text" required/>
-                        -->
+
                        {{ form.name }}
                    </div>
-                  <!--
-                    <div class="col-md-12" id="error_name"></div>
-                    -->
+
                    {% for err in form.name.errors %}
                        <div class="col-md-12">
                            <span style="color: red;">{{ err }}</span>
                        </div>
                     {% endfor %}
+
                    <div class="form-group">
-                       <!--
-                                <label for="input_email"><span class="glyphicon glyphicon-envelope"></span>&nbsp;邮箱</label>
-                                <input id="input_email" class="form-control input-lg" placeholder="邮箱" name="email" type="email" autofocus>
-                        -->
                          <label for="input_email"><span class="glyphicon glyphicon-envelope"></span>{{ form.email.label }}</label>
                          {{ form.email }}
                    </div>
-                    <!--
-                    <div class="col-md-12" id="error_email"></div>
-                    -->
                     {% for err in form.email.errors %}
                        <div class="col-md-12">
                            <span style="color: red;">{{ err }}</span>
                        </div>
                     {% endfor %}
+
                     <div class="form-group">
-                        <!--
-                                <label for="input_phone"><span class="glyphicon glyphicon-phone"></span>&nbsp;手机</label>
-                                <input id="input_phone" class="form-control input-lg" placeholder="手机" name="phone" type="text" autofocus>
-                        -->
                         <label for="input_email"><span class="glyphicon glyphicon-phone"></span>{{ form.phone.label }}</label>
-                         {{ form.phone }}
+                        {{ form.phone }}
 
                     </div>
                      {% for err in form.phone.errors %}
@@ -65,9 +57,7 @@
 
                      <div class="form-group">
                                 <label for="input_password"><span class="glyphicon glyphicon-lock"></span>&nbsp;{{ form.pwd.label }}</label>
-                                <!--
-                                <input id="input_password" class="form-control input-lg" placeholder="密码" name="password" type="password" value="">
-                                -->
+
                                  {{ form.pwd }}
 
                      </div>
@@ -76,6 +66,7 @@
                            <span style="color: red;">{{ err }}</span>
                        </div>
                     {% endfor %}
+
                     <div class="form-group">
                                 <label for="input_repassword"><span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;{{ form.repwd.label }}</label>
                                {{ form.repwd }}
@@ -87,16 +78,20 @@
                        </div>
                     {% endfor %}
 
-                    <!--
-                    <a href="#" class="btn btn-lg btn-success">注册</a>
-                    -->
                     {{ form.csrf_token }}
+
                     {{ form.submit }}
+
                 </fieldset>
 
             </form>
         </div>
       </div>
+
     </div>
+
 </div>
+
+
 {% endblock %}
+

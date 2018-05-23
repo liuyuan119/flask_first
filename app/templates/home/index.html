@@ -1,9 +1,10 @@
 {% extends "home/layout.html" %}
 
+
  {% block li %}
      {% if login_flag == 1 %}
          <a>
-            欢迎您，<span style="color: red"> {{ username }} </span>
+            欢迎您，<span style="color: red"> {{ username }},  </span> 登录此平台！
          </a>
      {% else %}
         <li>
@@ -15,8 +16,9 @@
      {% endif %}
  {% endblock %}
 
+
 {% block content %}
-    <!--热门电影-->
+<!--热门电影-->
 <section id="hotmovie" style="margin-top:76px">
     <div class="container">
         <div class="row wow fadeInRight" data-wow-delay="0.6s">

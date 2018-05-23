@@ -1,31 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-COMPATIBLE" CONTENT="IE=edge">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+    <meta name = "viewport" content="width=device-width, initial-scale=1,
+                  user-scalable=no">
     <title>微电影</title>
+
     <link rel="shortcut icon" href="{{ url_for('static', filename='base/images/logo.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static',  filename='base/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='base/css/bootstrap-movie.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='base/css/animate.css') }}">
-    {% block css %}
-    {% endblock %}
+     <link rel="stylesheet" href="{{ url_for('static', filename='base/css/animate.css') }}">
     <style>
         .navbar-brand>img {
             display: inline;
         }
-
     </style>
     <style>
         .media{
             padding:3px;
             border:1px solid #ccc
         }
-
     </style>
+    {% block css %}
+    {% endblock %}
 </head>
 
 <body>
@@ -39,7 +38,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{{ url_for('home.index') }}" class="navbar-brand" style="width:250px;">
+            <a href="index.html" class="navbar-brand" style="width:250px;">
                 <img src="{{ url_for('static',  filename='base/images/logo.png') }}" style="height:30px;">&nbsp;微电影
             </a>
         </div>
@@ -55,21 +54,24 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
+
                 <li>
-                    <a class="curlink" href="index.html"><span class="glyphicon glyphicon-film"></span>&nbsp;电影</a>
+                    <a class="curlink" href="{{ url_for('home.index') }}"><span class="glyphicon glyphicon-film"></span>&nbsp;电影</a>
                 </li>
-                <li>
-                    <a class="curlink" href="{{ url_for('home.home_login') }}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a>
-                </li>
-                <li>
-                    <a class="curlink" href="{{ url_for('home.home_register') }}"><span class="glyphicon glyphicon-plus"></span>&nbsp;注册</a>
-                </li>
+
+
+                    <li>
+                        <a class="curlink" href="{{ url_for('home.home_login') }}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a>
+                    </li>
+                    <li>
+                        <a class="curlink" href="{{ url_for('home.home_register') }}"><span class="glyphicon glyphicon-plus"></span>&nbsp;注册</a>
+                    </li>
+
+
                 <li>
                     <a class="curlink" href="{{ url_for('home.logout') }}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>
                 </li>
-                <li>
-                    <a class="curlink" href="user.html"><span class="glyphicon glyphicon-user"></span>&nbsp;会员</a>
-                </li>
+
             </ul>
         </div>
         <!--导航-->
@@ -77,25 +79,33 @@
     </div>
 </nav>
 <!--导航-->
+
 <!--内容-->
+
+
 <div class="container" style="margin-top:76px">
+
     {% block content %}
     {% endblock %}
+
 </div>
+
 <!--内容-->
+
 <!--底部-->
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    ©&nbsp;1000phone.com by  zhouguangyou&nbsp;2018.
+                    ©&nbsp;1000phone.com, written  by  zhouguangyou &nbsp;2018.
                 </p>
             </div>
         </div>
     </div>
 </footer>
 <!--底部-->
+
 <script src="{{ url_for('static',  filename='base/js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static',  filename='base/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static',  filename='base/js/jquery.singlePageNav.min.js') }}"></script>
@@ -116,9 +126,11 @@
     });
 
 </script>
+
 {% block js %}
 {% endblock %}
 
-
 </body>
+
+
 </html>

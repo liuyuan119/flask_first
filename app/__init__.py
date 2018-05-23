@@ -17,8 +17,3 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SECRET_KEY'] = '123'
 
 db = SQLAlchemy(app)    # 实例化db对象
-
-
-
-
-

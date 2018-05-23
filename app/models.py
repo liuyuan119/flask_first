@@ -38,6 +38,23 @@ class User(db.Model):
         return check_password_hash(self.pwd, pwd)
 
 
+# 管理员
+class Admin(db.Model):
+    __tablename__ = "admin"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    pwd = db.Column(db.String(100))
+    is_super = db.Column(db.SmallInteger)
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)
+
+    def __repr__(self):
+        return "<User %r>" % self.name
+
+    def check_pwd(self, pwd):
+        from werkzeug.security import check_password_hash
+        return check_password_hash(self.pwd, pwd)
+
+
 def creat_table():
     db.create_all()
 

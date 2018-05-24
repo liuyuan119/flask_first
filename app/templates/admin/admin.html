@@ -46,7 +46,7 @@
                             <img src="{{ url_for('static', filename='admin/dist/img/user3-128x128.jpg') }}"
                                  class="user-image" alt="User Image">
                             <span class="hidden-xs">
-                                {{ username }}
+                                {{ session['admin'] }}
                             </span>
                         </a>
                         <ul class="dropdown-menu">
@@ -54,7 +54,7 @@
                                 <img src="{{ url_for('static', filename='admin/dist/img/user3-128x128.jpg') }}"
                                      class="img-circle" alt="User Image">
                                 <p>
-                                    {{ username }}
+                                    {{ session['admin'] }}
                                     <small>2018-06-01</small>
                                 </p>
                             </li>
@@ -78,7 +78,7 @@
                          alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>用户:  {{ username }}</p>
+                    <p>用户:  {{ session['admin'] }}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>

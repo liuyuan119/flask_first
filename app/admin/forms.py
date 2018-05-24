@@ -86,3 +86,22 @@ class AdminRegisterForm(FlaskForm):
         }
 
     )
+
+
+class TagForm(FlaskForm):
+    name = StringField(
+        label="名称",
+        validators=[DataRequired("请输入标签！")],
+        description="标签",
+        render_kw={
+            "class": "form-control",
+            "id": "input_name",
+            "placehodler": "请输入标签名称",
+        }
+    )
+    submit = SubmitField(
+        "添加标签",
+        render_kw={
+            "class": "btn btn-primary",
+        }
+    )

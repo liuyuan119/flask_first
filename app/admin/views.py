@@ -68,3 +68,76 @@ def home_register():
         db.session.commit()
         flash("恭喜，管理员注册成功！", "ok")
     return render_template("admin/register.html", title="会员注册", form=form)
+
+
+# 标签添加
+@admin.route("/tag/add/", methods=["GET", "POST"])
+@check_admin_login
+def tag_add():
+    from app.admin.forms import TagForm
+    from app.models import Tag
+    from app import db
+    form = TagForm()
+    if form.validate_on_submit():
+        data = form.data
+        tagnum = Tag.query.filter_by(name=data['name']).count()
+        if tagnum == 1:
+            flash("标签名已经存在", "err")
+            return redirect(url_for("admin.tag_add"))
+        # 入库
+        tag = Tag(name=data['name'])
+        db.session.add(tag)
+        db.session.commit()
+        flash("添加标签成功", "ok")
+        return redirect(url_for("admin.tag_add"))
+    return render_template("admin/tag_add.html", form=form)
+
+
+# 标签列表
+@admin.route("/tag/list/<int:page>/", methods=["GET"])
+@check_admin_login
+def tag_list(page):
+    from app.models import Tag
+    if page is None:
+        page = 1
+    page_data = Tag.query.order_by(
+        Tag.addtime.desc()  # 按照时间进行降序排序
+    ).paginate(page=page, per_page=2)
+    return render_template("admin/tag_list.html", page_data=page_data)
+
+
+# 标签删除
+@admin.route("/tag/del/<int:id>/", methods=["GET"])
+@check_admin_login
+def tag_del(id=None):
+    from app.models import Tag
+    from app import db
+    tag = Tag.query.filter_by(id=id).first_or_404()  # notes: first() or 404()
+    db.session.delete(tag)
+    db.session.commit()
+    flash("删除标签成功", "ok")
+    return redirect(url_for("admin.tag_list", page=1))
+
+
+# 标签修改
+@admin.route("/tag/edit/<int:id>", methods=["GET", "POST"])
+@check_admin_login
+def tag_edit(id=None):
+    from app.admin.forms import TagForm
+    from app.models import Tag
+    from app import db
+    form = TagForm()
+    tag = Tag.query.get_or_404(id)
+    if form.validate_on_submit():
+        data = form.data
+        tag_count = Tag.query.filter_by(name=data['name']).count()
+        if tag_count == 1:
+            flash("标签已经存在", "err")
+            return redirect(url_for("admin.tag_edit", id=id))
+        # 入库
+        tag.name = data["name"]
+        db.session.add(tag)
+        db.session.commit()
+        flash("修改标签成功", "ok")
+        return redirect(url_for("admin.tag_list", page=1))
+    return render_template("admin/tag_edit.html", form=form, tag=tag)

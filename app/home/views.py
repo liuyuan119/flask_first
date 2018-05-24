@@ -30,7 +30,7 @@ def index():
     if session.get('user'):
         login_flag = 1
         user_name = session['user']
-    return render_template("home/index.html", login_flag=login_flag, username=user_name)
+    return render_template('home/index.html', login_flag=login_flag, username=user_name)
 
 
 @home.route("/add_user/<string:username>/<string:email>/<string:address>/")
@@ -60,10 +60,10 @@ def home_login():
         fpwd = data['pwd']
         user = User.query.filter_by(name=fname).first()
         if user == None:
-            flash("用户名不存在", "err")
+            flash("用户名不存在--flash", "err")
             return redirect(url_for("home.home_login"))
         if not user.check_pwd(fpwd):
-            flash("密码验证错误", "err")
+            flash("密码验证错误--flash", "err")
             return redirect(url_for("home.home_login"))
         # check login ok
         session['user'] = user.name

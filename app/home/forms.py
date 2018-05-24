@@ -35,6 +35,13 @@ class LoginForm(FlaskForm):
         }
     )
 
+    def validate_name(self, field):
+        name = field.data
+        user_count = User.query.filter_by(name=name).count()
+        if user_count == 0:
+            raise ValidationError("此账号不存在！--func")
+
+
 
 '''
 注册表单
@@ -116,14 +123,14 @@ class RegisterForm(FlaskForm):
         if user_count == 1:
             raise ValidationError("用户名已经存在.")
 
-    def validate_email(self, field):
-        email = field.data
-        user_count = User.query.filter_by(email=email).count()
-        if user_count == 1:
-            raise ValidationError("用户名已经存在.")
-
-    def validate_phone(self, field):
-        phone = field.data
-        user_count = User.query.filter_by(phone=phone).count()
-        if user_count == 1:
-            raise ValidationError("用户名已经存在.")
+    # def validate_email(self, field):
+    #     email = field.data
+    #     user_count = User.query.filter_by(email=email).count()
+    #     if user_count == 1:
+    #         raise ValidationError("用户名已经存在.")
+    #
+    # def validate_phone(self, field):
+    #     phone = field.data
+    #     user_count = User.query.filter_by(phone=phone).count()
+    #     if user_count == 1:
+    #         raise ValidationError("用户名已经存在.")

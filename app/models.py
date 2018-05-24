@@ -55,6 +55,16 @@ class Admin(db.Model):
         return check_password_hash(self.pwd, pwd)
 
 
+class Tag(db.Model):
+    __tablename__ = "tag"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)
+
+    def __repr__(self):
+        return "<Tag %r>" % self.name
+
+
 def creat_table():
     db.create_all()
 

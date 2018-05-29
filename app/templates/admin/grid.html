@@ -28,12 +28,12 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-2-1">
-                <a href="movie_add.html">
+                <a href="{{ url_for("admin.movie_add") }}">
                     <i class="fa fa-circle-o"></i> 添加电影
                 </a>
             </li>
             <li id="g-2-2">
-                <a href="movie_list.html">
+                <a href="{{ url_for("admin.movie_list", page=1) }}">
                     <i class="fa fa-circle-o"></i> 电影列表
                 </a>
             </li>

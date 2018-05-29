@@ -65,6 +65,26 @@ class Tag(db.Model):
         return "<Tag %r>" % self.name
 
 
+class Movie(db.Model):
+    __tablename__ = "movie"
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    title = db.Column(db.String(255), unique=True)  # 标题
+    url = db.Column(db.String(255), unique=True)  # url
+    info = db.Column(db.Text)
+    logo = db.Column(db.String(255), unique=True)  # logo
+    star = db.Column(db.Integer)  # 星级
+    playnum = db.Column(db.BigInteger)  # 播放量
+    commentnum = db.Column(db.BigInteger)  # 评论数
+    tag_id = db.Column(db.Integer, db.ForeignKey('tag.id'))  # 外键，关联标签
+    area = db.Column(db.String(255))  # 上映地区
+    release_time = db.Column(db.Date)  # 上映时间
+    length = db.Column(db.String(100))
+    addtime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return "<Movie %r>" % self.title
+
+
 def creat_table():
     db.create_all()
 

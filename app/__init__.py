@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
@@ -15,5 +16,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:1190@127.0.0.1:330
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 app.config['SECRET_KEY'] = '123'
+app.config['UP_DIR'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/uploads/")
 
 db = SQLAlchemy(app)    # 实例化db对象
